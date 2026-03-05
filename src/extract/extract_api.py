@@ -60,12 +60,17 @@ def fetch_products(config: dict | None = None) -> list[dict[str, Any]]:
     max_retries: int = api_cfg["max_retries"]
 
     url = base_url.rstrip("/") + endpoint
-    log.info(f"Fetching products from {url} (timeout={timeout}s, max_retries={max_retries})")
+    verify_ssl: bool = api_cfg.get("verify_ssl", True)
+    if not verify_ssl:
+        import urllib3
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        log.warning("SSL verification disabled (verify_ssl=false in config) — ensure you are on a trusted network")
+    log.info(f"Fetching products from {url} (timeout={timeout}s, max_retries={max_retries}, verify_ssl={verify_ssl})")
 
     last_exc: Exception | None = None
     for attempt in range(1, max_retries + 1):
         try:
-            response = requests.get(url, timeout=timeout)
+            response = requests.get(url, timeout=timeout, verify=verify_ssl)
             response.raise_for_status()
             products: list[dict] = response.json()
 

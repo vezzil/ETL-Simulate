@@ -39,6 +39,8 @@ api:
   products_endpoint: /products
   timeout_seconds: 30
   max_retries: 3
+  # Set to false in corporate environments with SSL inspection proxies (e.g. EY network)
+  verify_ssl: false
 
 # ─────────────────────────────────────────────────────────
 # Staging / processed file names
