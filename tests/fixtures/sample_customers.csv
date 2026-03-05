@@ -1,0 +1,6 @@
+customer_id,customer_unique_id,customer_city,customer_state,customer_zip_code_prefix
+abc001,uniq001,são paulo,SP,01310
+abc002,uniq002,rio de janeiro,RJ,20040
+abc003,uniq001,campinas,SP,13010
+abc004,uniq003,belo horizonte,MG,30112
+abc005,,porto alegre,RS,90010

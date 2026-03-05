@@ -1,0 +1,6 @@
+product_id,product_category_name,product_name_lenght,product_description_lenght,product_photos_qty,product_weight_g,product_length_cm,product_height_cm,product_width_cm
+prod001,eletronicos,24,512,1,300,15,10,10
+prod002,informatica_acessorios,36,800,2,1200,30,5,20
+prod003,fashion_roupa_feminina,20,400,3,200,25,2,20
+prod004,joias_relogios,18,300,4,100,10,5,8
+prod005,,15,200,1,500,20,15,15

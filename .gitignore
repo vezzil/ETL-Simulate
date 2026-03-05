@@ -1,0 +1,54 @@
+# ─── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual environments ─────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── IDE ──────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# ─── Data files — exclude raw CSVs & DBs from version control
+data/raw/csv/*.csv
+data/raw/*.db
+data/raw/*.json
+data/processed/
+data/dwh/
+
+# ─── Logs ─────────────────────────────────────────────────
+logs/
+*.log
+
+# ─── Airflow ──────────────────────────────────────────────
+airflow.cfg
+airflow.db
+webserver_config.py
+standalone_admin_password.txt
+
+# ─── Jupyter ──────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── OS ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── pytest ───────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.env

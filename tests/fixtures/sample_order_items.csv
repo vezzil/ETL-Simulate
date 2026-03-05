@@ -1,0 +1,6 @@
+order_id,order_item_id,product_id,price,freight_value
+order001,1,prod001,99.90,8.72
+order002,1,prod002,149.00,12.50
+order002,2,prod003,25.00,5.00
+order003,1,prod001,0.00,0.00
+order005,1,prod004,299.99,15.00

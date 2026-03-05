@@ -1,0 +1,81 @@
+# ─────────────────────────────────────────────────────────
+# ETL-Simulate Central Configuration
+# ─────────────────────────────────────────────────────────
+# All paths are relative to the project root.
+# Inside Airflow containers the project root is /opt/airflow.
+
+paths:
+  # Raw landing zone — extracted data drops here
+  raw_dir: data/raw
+  csv_dir: data/raw/csv
+
+  # Staging — cleaned / transformed data before loading
+  processed_dir: data/processed
+
+  # Data Warehouse
+  dwh_dir: data/dwh
+  dwh_db: data/dwh/ecommerce_dwh.db
+
+  # Operational source DB (seeded locally)
+  operational_db: data/raw/operational.db
+
+  # Quality check logs
+  logs_dir: logs
+
+# ─────────────────────────────────────────────────────────
+# Source file names (placed in paths.csv_dir by user)
+# ─────────────────────────────────────────────────────────
+source_files:
+  customers: olist_customers_dataset.csv
+  orders: olist_orders_dataset.csv
+  order_items: olist_order_items_dataset.csv
+  products: olist_products_dataset.csv
+
+# ─────────────────────────────────────────────────────────
+# REST API
+# ─────────────────────────────────────────────────────────
+api:
+  base_url: https://fakestoreapi.com
+  products_endpoint: /products
+  timeout_seconds: 30
+  max_retries: 3
+
+# ─────────────────────────────────────────────────────────
+# Staging / processed file names
+# ─────────────────────────────────────────────────────────
+staging_files:
+  orders: orders_clean.csv
+  customers: customers_clean.csv
+  products: products_clean.csv
+  order_events: order_events.csv
+  api_products: api_products.json
+  dim_date: dim_date.csv
+
+# ─────────────────────────────────────────────────────────
+# Validation thresholds
+# ─────────────────────────────────────────────────────────
+validation:
+  min_price: 0.0
+  min_quantity: 1
+  valid_statuses:
+    - delivered
+    - shipped
+    - processing
+    - canceled
+    - invoiced
+    - approved
+    - unavailable
+    - created
+  max_null_ratio_fact_fk: 0.01   # allow at most 1% null FKs in fact table
+
+# ─────────────────────────────────────────────────────────
+# Airflow DAG settings
+# ─────────────────────────────────────────────────────────
+dag:
+  dag_id: etl_ecommerce_pipeline
+  schedule: "@daily"
+  start_date: "2024-01-01"
+  catchup: false
+  max_active_runs: 1
+  retries: 1
+  retry_delay_minutes: 5
